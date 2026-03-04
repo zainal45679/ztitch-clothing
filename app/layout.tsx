@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "@/app/_layouts/Header";
+import Footer from "@/app/_layouts/Footer";
+import { Darker_Grotesque } from "next/font/google";
+
+const darker = Darker_Grotesque({
+  subsets: ["latin"],
+  weight: ["300","400","500","600","700","800","900"],
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,10 +32,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased ${darker.className}`}>
+        <Header/>
         {children}
+        <Footer/>
       </body>
     </html>
   );
