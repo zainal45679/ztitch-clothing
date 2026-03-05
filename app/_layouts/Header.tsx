@@ -33,7 +33,7 @@ console.log(menu);
                 <div className='flex flex-col text-[#e5dccd]/90 px-7 py-15 text-2xl gap-2'>
                     <Link href="/">Home</Link>
                     <Link href="">Shop</Link>
-                    <Link href="">About</Link>
+                    <Link href="/shop">About</Link>
                     <Link href="">Blog</Link>
                     <Link href="/contact">Contact</Link>
                     <Link href="">Page</Link>
