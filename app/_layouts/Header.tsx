@@ -32,8 +32,8 @@ console.log(menu);
                 <div><Close onClick={()=>setMenu(false)} className='h-8 m-2 absolute top-1 right-2 text-[#e5dccd]/50'/></div>
                 <div className='flex flex-col text-[#e5dccd]/90 px-7 py-15 text-2xl gap-2'>
                     <Link href="/">Home</Link>
-                    <Link href="">Shop</Link>
-                    <Link href="/shop">About</Link>
+                    <Link href="/shop">Shop</Link>
+                    <Link href="">About</Link>
                     <Link href="">Blog</Link>
                     <Link href="/contact">Contact</Link>
                     <Link href="">Page</Link>
