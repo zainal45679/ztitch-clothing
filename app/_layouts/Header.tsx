@@ -15,7 +15,7 @@ console.log(menu);
         <h2 className='text-gray-200 text-[25px] md:text-5xl p-0 '>Z'TITCH</h2>
         <div className='hidden md:flex  gap-8 text-gray-200 text-2xl'>
             <Link href="/">Home</Link>
-            <Link href="">Shop</Link>
+            <Link href="/shop">Shop</Link>
             <Link href="">About</Link>
             <Link href="">Blog</Link>
             <Link href="/contact">Contact</Link>
