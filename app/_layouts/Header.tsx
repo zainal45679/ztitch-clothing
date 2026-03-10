@@ -8,7 +8,6 @@ import Close from '@/svg/Close';
 const Header = () => {
 
 const [menu, setMenu] = useState(false);
-console.log(menu);
 
     return (
     <div className='flex bg-[#24180c] md:h-15 items-center justify-between p-3 px-5  md:p-10 z-50'>

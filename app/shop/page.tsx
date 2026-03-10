@@ -68,8 +68,8 @@ const Shop = () => {
         </div>
         <div className='grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 md:grid-rows-2 md:gap-4 gap-2 md:pt-7 pt-2'>
             {
-                products.map((items)=>(
-                    <CatagoryCard image={items.image} title={items.title}/>
+                products.map((items,i)=>(
+                    <CatagoryCard key={i} image={items.image} title={items.title}/>
                 ))   
             }
         </div>

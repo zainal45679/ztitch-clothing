@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import img1 from '../../public/_images/woman-looking-black-shirt.jpg'
+import Link from 'next/link'
 
 type cartItems = {
     image : any,
@@ -12,7 +13,7 @@ type cartItems = {
 const Card = ({ image, title, caption, price }:cartItems) => {
 
   return (
-    <div className=" bg-white overflow-hidden shadow-xl hover:scale-105 transition duration-200 ease-in-out">
+    <Link href={`/shop/products/${title}`} className=" bg-white overflow-hidden shadow-xl hover:scale-105 transition duration-200 ease-in-out">
       <div className='h-65'>
         <Image 
         src={image} 
@@ -31,7 +32,7 @@ const Card = ({ image, title, caption, price }:cartItems) => {
           </h1>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

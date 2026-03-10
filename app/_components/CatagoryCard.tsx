@@ -11,7 +11,7 @@ type cartItems = {
 const CatagoryCard = ({ image, title }:cartItems) => {
 
   return (
-    <Link href="/shop/products" className="relative bg-white overflow-hidden shadow-xl hover:scale-105 transition duration-200 ease-in-out">
+    <Link href={`/shop/${title}`} className="relative bg-white overflow-hidden shadow-xl hover:scale-105 transition duration-200 ease-in-out">
       <div className='relative h-65 w-full'>
         <Image 
         src={image} 
