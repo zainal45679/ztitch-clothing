@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link'
 import React, { useState } from 'react'
-import Cart from './Cart'
+import Cart from '../../svg/Cart'
 import Hamburger from '@/svg/Hamburger'
 import Close from '@/svg/Close';
 

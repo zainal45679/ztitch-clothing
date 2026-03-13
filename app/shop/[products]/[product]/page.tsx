@@ -7,7 +7,7 @@ import img4 from "../../../../public/_images/p-4.webp";
 
 const Page = () => {
   return (
-    <div className="h-[90vh] flex bg-[#e5dccd] text-[#24180c]">
+    <div className="h-[90vh] flex md:flex-row flex-col bg-[#e5dccd] text-[#24180c]">
       <div className="relative w-1/2 h-full p-10 grid grid-cols-2 grid-rows-2 gap-3">
         <div className="relative">
           <Image src={img1} alt="image1" fill className="object-cover" />

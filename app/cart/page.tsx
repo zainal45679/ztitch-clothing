@@ -4,8 +4,9 @@ import img2 from "../../public/_images/IMG_8992.jpg";
 import img3 from "../../public/_images/IMG_8994.jpg";
 import img4 from "../../public/_images/IMG_9024.jpg";
 import Image from "next/image";
-import Cart from "../_layouts/Cart";
+import Cart from "../../svg/Cart";
 import CartCard from "../_components/cart-card";
+import Link from "next/link";
 
 const products = [
   {
@@ -58,9 +59,9 @@ const page = () => {
             <h1 className="text-xl">CART TOTAL</h1>
             <h1 className="text-xl">ITEM TOTAL</h1>
             <h1 className="text-xl">TOTAL</h1>
-            <button className="bg-[#e5dccd] text-2xl text-[#24180c] p-3 w-full">
+            <Link href="/cart/checkout" className="bg-[#e5dccd] text-center text-2xl text-[#24180c] p-3 w-full">
               PROCEED TO CHECKOUT
-            </button>
+            </Link>
           </div>
         </div>
       </div>
