@@ -9,7 +9,6 @@ const Page = () => {
   return (
     <div className="min-h-[90vh] flex md:flex-row flex-col bg-[#e5dccd] text-[#24180c]">
 
-      {/* Desktop Grid */}
       <div className="relative w-full md:w-1/2 h-[50vh] md:h-full p-4 md:p-10 hidden md:grid grid-cols-2 grid-rows-2 gap-3">
         {[img1, img2, img3, img4].map((img, i) => (
           <div key={i} className="relative">
@@ -27,7 +26,6 @@ const Page = () => {
         ))}
       </div>
 
-      {/* Product Details */}
       <div className="w-full md:w-1/2 flex flex-col items-center justify-center gap-2 p-6 text-center md:text-left">
         <h1 className="text-4xl md:text-5xl">COCO-WHITE</h1>
         <h1 className="text-xl md:text-3xl">

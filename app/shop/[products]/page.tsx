@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import img1 from "../../../public/_images/IMG_9027.jpg";
 import img2 from "../../../public/_images/IMG_8992.jpg";
 import img3 from "../../../public/_images/IMG_8994.jpg";
 import img4 from "../../../public/_images/IMG_9024.jpg";
 import img5 from "../../../public/_images/IMG_9025.jpg";
 import Card from "@/app/_components/Card";
+import CardSkeleton from "@/app/_components/CardSkeleton";
 
 const products = [
   {
@@ -46,17 +47,25 @@ const page = () => {
 
   const [handleSort, setHandleSort] = useState(true);
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 800); // simulate loading
+
+    return () => clearTimeout(timer);
+  }, []);
+
   let order = "asc";
 
   const filteredProduct = products.filter((product) => {
     return product.title.toLowerCase().includes(inputValue.toLowerCase());
   });
 
-  const sortedArray = 
-    [...filteredProduct].sort((a, b) => {
-      return parseInt(a.price) - parseInt(b.price);
-    });
-  
+  const sortedArray = [...filteredProduct].sort((a, b) => {
+    return parseInt(a.price) - parseInt(b.price);
+  });
 
   return (
     <div className="bg-[#e5dccd] ">
@@ -81,15 +90,17 @@ const page = () => {
         </div>
       </div>
       <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 md:grid-rows-2 md:gap-4 gap-2 md:pt-7 pt-2 px-4">
-        {(handleSort ? filteredProduct : sortedArray).map((items, i) => (
-          <Card
-            key={i}
-            image={items.image}
-            title={items.title}
-            caption={items.caption}
-            price={items.price}
-          />
-        ))}
+        {loading
+          ? Array.from({ length: 8 }).map((_, i) => <CardSkeleton key={i} />)
+          : (handleSort ? filteredProduct : sortedArray).map((items, i) => (
+              <Card
+                key={i}
+                image={items.image}
+                title={items.title}
+                caption={items.caption}
+                price={items.price}
+              />
+            ))}
       </div>
     </div>
   );
