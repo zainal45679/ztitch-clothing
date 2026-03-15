@@ -10,6 +10,10 @@ import { Form, useForm } from 'react-hook-form'
 import { error } from 'console'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { schema } from '@hookform/resolvers/ajv/src/__tests__/__fixtures__/data.js'
+import img1 from "../../public/_images/Contact2.jpg"
+import img2 from "../../public/_images/ContactSmall2.png"
+import Image from 'next/image'
+
 
 const loginSchema = z.object({
     username: z.string().min(1, "Username is Required").email({message:"Invalid Email"}),
@@ -29,23 +33,27 @@ const submit = (data : Tlogin) =>{
 }
 
   return (
-    <div className='flex items-center justify-center h-[90vh] bg-[#e5dccd]'>
-        <form onSubmit={handleSubmit(submit)} className='flex flex-col  gap-4 bg-[#24180c]/70 p-10 w-100'>
+    <div className='flex relative items-center max-md:justify-center justify-end md:pr-[15%] h-[90vh] bg-[#e5dccd]'>
+        <div className="absolute inset-0">
+            <Image src={img1} alt="bg" fill className="object-cover max-md:hidden" />
+            <Image src={img2} alt="bg" fill className="object-cover md:hidden" />
+        </div>
+        <form onSubmit={handleSubmit(submit)} className='flex relative z-10 flex-col  md:gap-4 gap-1 bg-[#24180c]/80 md:p-10 p-4 md:w-100 w-[85%]'>
             <div className='flex flex-col items-center'>
-                <h1 className='text-4xl'>LOG IN </h1>
-                <h1 className='text-xl'>Sign in to get started</h1>
+                <h1 className='md:text-4xl text-3xl'>LOG IN </h1>
+                <h1 className='md:text-xl'>Sign in to get started</h1>
             </div>
             <div>
                 <h1 className='text-2xl'>Email</h1>
-                <input {...register("username")} type="text" placeholder='Choose a username' className='border border-[#e5dccd]/30 w-full p-2 text-xl' />
+                <input {...register("username")} type="text" placeholder='Enter your username' className='border border-[#e5dccd]/30 w-full p-2 text-xl' />
                 {errors.username && ( <p className='text-red-500'> {errors.username.message as string} </p>)}
             </div>
             <div className='relative'>
-                <Password registration={register("password")} type={pass} title='Password' place='Enter a password' className1='text-2xl' className2='border border-[#e5dccd]/30 w-full p-2 text-xl'/>
+                <Password registration={register("password")} type={pass} title='Password' place='Enter your password' className1='text-2xl' className2='border border-[#e5dccd]/30 w-full p-2 text-xl'/>
                 {errors.password && ( <p className='text-red-500'> {errors.password.message as string} </p>)}
             </div>
             <div className='flex justify-center mt-3'>
-                <button className='bg-[#e5dccd]/70 text-[#24180c] w-[50%] text-2xl font-medium p-2'>LOG IN</button>
+                <button className='bg-[#e5dccd]/70 text-[#24180c] w-[50%] md:text-2xl text-xl font-medium md:p-2 p-1 mb-2'>LOG IN</button>
             </div>
             <hr className='opacity-20' />
             <div>

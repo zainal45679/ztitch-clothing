@@ -31,7 +31,7 @@ const handleClick = ()=>{
       </div>
       <button type='button' onClick={handleClick}>
         {
-          pass ? <Eye className='h-6 absolute bottom-9 right-3'/> : <CloseEye className='h-6 absolute bottom-9 right-3'/>
+          pass ? <Eye className='h-6 absolute bottom-9 right-3 text-[#24180c]/80'/> : <CloseEye className='h-6 absolute bottom-9 right-3 text-[#24180c]/80'/>
         }
         
       </button>
