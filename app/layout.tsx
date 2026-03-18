@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/app/_layouts/Header";
 import Footer from "@/app/_layouts/Footer";
 import { Darker_Grotesque } from "next/font/google";
+import ProviderClient from "./provider/provider";
 
 const darker = Darker_Grotesque({
   subsets: ["latin"],
@@ -33,9 +34,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased ${darker.className}`}>
-        <Header/>
-        {children}
-        <Footer/>
+        <ProviderClient>
+          <Header/>
+            {children}
+          <Footer/>
+        </ProviderClient>
       </body>
     </html>
   );

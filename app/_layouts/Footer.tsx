@@ -6,7 +6,7 @@ import Twitter from '@/svg/Twitter'
 const Footer = () => {
   return (
     <div >
-        <div className='flex md:flex-row flex-col gap-3 md:justify-between max-md:items-center md:px-20 px-5 py-8 bg-[#24180c] '>
+        <div className='flex md:flex-row flex-col md:gap-35 gap-3 md:justify-between max-md:items-center md:px-20 px-5 py-8 bg-[#24180c] '>
             <div className='text-gray-200 md:text-3xl text-2xl max-md:text-center w-full'>Z'TITCH</div>
             <div className='w-full flex flex-col items-center'>
                 <div className='flex justify-center text-gray-200 md:text-2xl'>Links</div>

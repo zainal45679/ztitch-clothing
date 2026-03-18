@@ -5,6 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import img1 from "../../../public/_images/checkout.jpg"
+import Image from "next/image";
 
 const checkoutSchema = z.object({
     fname:z.string().min(5, "First Name is Required"),
@@ -30,14 +32,18 @@ const { register, handleSubmit, formState : { errors } } = useForm({ resolver: z
 
   return (
     <div>
-      <div className="bg-[#e5dccd] min-h-[90vh] px-80">
+      <div className="relative bg-[#e5dccd] min-h-[90vh] px-80">
+        <div className="absolute inset-0">
+            <Image src={img1} alt="bg" fill className="object-cover max-md:hidden" />
+            {/* <Image src={img2} alt="bg" fill className="object-cover md:hidden" /> */}
+        </div>
         <div>
-          <h1 className="text-4xl text-[#24180c] text-center p-5 ">
+          <h1 className="text-4xl text-[#e5dccd] text-center p-5 relative z-10">
             - CHECK OUT -
           </h1>
         </div>
-        <div className="flex gap-2">
-          <div className="bg-[#24180c]/85 w-[60%]">
+        <div className="flex gap-2 relative z-10">
+          <div className="bg-[#24180c]/80 w-[60%]">
             <div className="flex text-2xl p-5 w-full">
               <form onSubmit={handleSubmit(submit)} className="flex flex-col gap-3 w-full">
                 <div className="flex gap-3 w-full">

@@ -22,7 +22,7 @@ const CartCard = ({image, title, size, color, qty, price}: itemsCart) => {
             <h2 className="md:text-xl text-lg font-medium text-[#24180c]">
               {title}
             </h2>
-            <p className="text-gray-500 max-md:text-sm md:mt-1">{size} | {color} | QTY | {qty} ▼</p>
+            <p className="text-gray-500 max-md:text-sm md:mt-1">{size} | {color} | QTY | <button>-</button> {qty} <button>+</button> </p>
           </div>
           <Bin className="md:w-7 w-3 md:p-1 hover:bg-gray-200 duration-200"/>
           {/* <button className="text-gray-600 hover:text-black">🗑</button> */}
