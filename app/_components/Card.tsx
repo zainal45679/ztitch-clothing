@@ -69,7 +69,7 @@ const cardProducts = {
       ADD TO CART
     </button>
 
-    <div className='text-[#24180c] text-xl'>
+    <div className='text-[#24180c] md:text-xl text-md'>
       {price}
       <span className="text-[#24180c] opacity-75"> INR</span>
     </div>
