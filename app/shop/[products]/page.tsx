@@ -13,32 +13,47 @@ const products = [
   {
     image: img1,
     title: "PHEX - BLACK",
+    color: "BLACK",
     caption: "FLORAL PRINT REGULAR FIT",
-    price: "2599/-",
+    price: 2599,
+    size: "S",
+    quantity : 1
   },
   {
     image: img2,
     title: "ROW-S26 - DUSKY BLUE",
+    color: "BLUE",
     caption: "REGULAR FIT MERCERISED POLO",
-    price: "1999/-",
+    price: 1999,
+    size: "M",
+    quantity : 1
   },
   {
     image: img3,
     title: "COCO - WHITE",
+    color: "WHITE",
     caption: "TROPICAL PRINT CUBAN SHIRT",
-    price: "2799/-",
+    price: 2799,
+    size: "L",
+    quantity : 1
   },
   {
     image: img4,
     title: "MELFI - TEAL",
+    color: "TEAL",
     caption: "REGULAR FIT CHECKED PRINT",
-    price: "2999/-",
+    price: 2999,
+    size: "S",
+    quantity : 1
   },
   {
     image: img5,
-    title: "MELFI - TEAL",
-    caption: "REGULAR FIT CHECKED PRINT",
-    price: "2399/-",
+    title: "BEACH - GREEN",
+    color: "GREEN",
+    caption: "LOOSE FIT BEACH SHIRT",
+    price: 2399,
+    size: "XL",
+    quantity : 1
   },
 ];
 
@@ -64,7 +79,7 @@ const page = () => {
   });
 
   const sortedArray = [...filteredProduct].sort((a, b) => {
-    return parseInt(a.price) - parseInt(b.price);
+    return a.price - b.price;
   });
 
   return (
@@ -99,6 +114,10 @@ const page = () => {
                 title={items.title}
                 caption={items.caption}
                 price={items.price}
+                size={items.size}
+                color={items.color}
+                id={i.toString(16)}
+                quantity={items.quantity}
               />
             ))}
       </div>

@@ -22,61 +22,91 @@ const FeaturedProduct = () => {
             image : img1,
             title : "PHEX - BLACK",
             caption : "FLORAL PRINT REGULAR FIT",
-            price : "2599/-"
+            price : 2599,
+            color : "BLACK",
+            quantity : 1,
+            size : "S"
         },
         {
             image : img2,
             title : "ROW-S26 - DUSKY BLUE",
             caption : "REGULAR FIT MERCERISED POLO",
-            price : "1999/-"
+            price : 1999,
+            color : "BLUE",
+            quantity : 1,
+            size : "M"
         },
         {
             image : img3,
             title : "COCO - WHITE",
             caption : "TROPICAL PRINT CUBAN SHIRT",
-            price : "2799/-"
+            price : 2799,
+            color : "WHITE",
+            quantity : 1,
+            size : "S"
         },
         {
             image : img4,
             title : "MELFI - TEAL",
             caption : "REGULAR FIT CHECKED PRINT",
-            price : "2999/-"
+            price : 2999,
+            color : "TEAL",
+            quantity : 1,
+            size : "S"
         },
         {
             image : img5,
             title : "ZEDTER-2 - OLIVE",
             caption : "RELAXED FIT EMBROIDERED",
-            price : "1699/-"
+            price : 1699,
+            color : "OLIVE",
+            quantity : 1,
+            size : "S"
         },
         {
             image : img6,
             title : "VOLAS - MAROON",
             caption : "REGULAR FIT VISCOSE BLEND",
-            price : "2599/-"
+            price : 2599,
+            color : "MAROON",
+            quantity : 1,
+            size : "S"
         },
         {
             image : img7,
             title : "CARTER - BLACK",
             caption : "REGULAR FIT PLAIN POLO",
-            price : "1899/-"
+            price : 1899,
+            color : "BLACK",
+            quantity : 1,
+            size : "S"
         },
         {
             image : img8,
             title : "TRISH - OLIVE",
             caption : "BOXY FIT PAISLEY PRINT SHIRT",
-            price : "2199/-"
+            price : 2199,
+            color : "OLIVE",
+            quantity : 1,
+            size : "S"
         },
         {
             image : img9,
             title : "HAXLR 26 - DUSKY PINK",
             caption : "REGULAR FIT CHAMBRAY SOLID",
-            price : "3799/-"
+            price : 3799,
+            color : "PINK",
+            quantity : 1,
+            size : "S"
         },
         {
             image : img10,
             title : "SALIS-A25 - BEIGE",
             caption : "REGULAR FIT PLAIN POLO",
-            price : "1799/-"
+            price : 1799,
+            color : "BIEGE",
+            quantity : 1,
+            size : "S"
         },
     ]
 
@@ -89,7 +119,15 @@ const FeaturedProduct = () => {
         <div className='grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 md:grid-rows-2 md:gap-4 gap-2 md:pt-7 pt-2'>
             {
                 products.map((items, i)=>(
-                    <Card key={i} image={items.image} title={items.title} caption={items.caption} price={items.price}/>
+                    <Card key={i}
+                image={items.image}
+                title={items.title}
+                caption={items.caption}
+                price={items.price}
+                size={items.size}
+                color={items.color}
+                id={i.toString(16)}
+                quantity={items.quantity}/>
                 ))   
             }
         </div>

@@ -4,10 +4,13 @@ import React, { useState } from 'react'
 import Cart from '../../svg/Cart'
 import Hamburger from '@/svg/Hamburger'
 import Close from '@/svg/Close';
+import { useCart } from 'react-use-cart';
 
 const Header = () => {
 
 const [menu, setMenu] = useState(false);
+
+const { totalUniqueItems } = useCart()
 
     return (
     <div className='flex bg-[#24180c] md:h-15 items-center justify-between p-3 px-5  md:p-10 z-50'>
@@ -23,7 +26,7 @@ const [menu, setMenu] = useState(false);
         <div className='flex gap-7'>
             <div className='flex relative cursor-pointer mt-2'>
                 <Link href="/cart"><Cart className='md:w-6 w-5.5 md:h-6 h-5.5 text-gray-200 ' /></Link>
-                <span className='absolute md:-top-5 md:-right-5 -top-3.5 -right-5 bg-gray-200/70 pb-0.5 text-gray-800 md:px-2 px-[7.5] max-md:text-sm rounded-full font-bold'>2</span>
+                <span className='absolute md:-top-5 md:-right-5 -top-3.5 -right-5 bg-gray-200/70 pb-0.5 text-gray-800 md:px-2 px-[7.5] max-md:text-sm rounded-full font-bold'>{totalUniqueItems}</span>
             </div>
             <Hamburger onClick={() => setMenu(true)} className='h-8 w-8 md:hidden text-gray-200'/>
             { menu === true && 

@@ -41,7 +41,7 @@ const Shop = () => {
         },
         {
             image : img6,
-            title : "TRACK-PANTS",
+            title : "TRACKSUITS",
         },
         {
             image : img7,
