@@ -46,7 +46,7 @@ const cardProducts = {
     </div>
 
     <div className='flex flex-col md:gap-1 p-3 -my-2'>
-      <h1 className="text-[#24180c] lg:text-2xl md:text-xl">
+      <h1 className="text-[#24180c] md:text-xl">
         {title}
       </h1>
       <p className="text-[#24180c] opacity-60 md:text-sm text-xs mb-1">
