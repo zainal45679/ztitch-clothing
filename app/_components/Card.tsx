@@ -18,34 +18,34 @@ type cartItems = {
 
 
 
-const Card = ({ image, title, caption, price, size, color, id, quantity }:cartItems) => {
-  
+const Card = ({ image, title, caption, price, size, color, id, quantity, }:cartItems) => {
+
 const { addItem, items } = useCart();
 
 const cardProducts = {
-  
   image : image,
   name : title,
-  size : size,
   color : color,
   price : price,
   id : id,
-  quantity : quantity
+  quantity : quantity,
 }
 
-  return (
+return (
 <div className="bg-white overflow-hidden shadow-xl hover:scale-105 transition">
 
-  <Link href={`/shop/products/${title}`}>
-    <div className='h-65'>
-      <Image 
-        src={image} 
+  <Link href={`/shop/products/${id}`}>
+    
+    <div className="relative h-64 w-full">
+      <Image
+        src={image}
         alt="card"
-        className='h-full object-cover'
+        fill
+        className="h-full object-cover"
       />
     </div>
 
-    <div className='flex flex-col md:gap-1 p-3 -my-2'>
+    <div className="flex flex-col md:gap-1 p-3">
       <h1 className="text-[#24180c] md:text-xl">
         {title}
       </h1>
@@ -54,24 +54,23 @@ const cardProducts = {
       </p>
       <hr />
     </div>
-    
+
   </Link>
 
-  
-
-  <div className='flex justify-between items-center p-3 pt-0 pb-2'>
+  <div className="flex justify-between items-center p-3 pt-0 pb-2">
     <button
       onClick={(e) => {
+        e.preventDefault(); 
         addItem(cardProducts);
       }}
-      className='text-sm text-[#24180c] hover:bg-gray-200 hover:px-2 duration-200'
+      className="text-sm text-[#24180c] hover:bg-gray-200 hover:px-2 duration-200"
     >
       ADD TO CART
     </button>
 
-    <div className='text-[#24180c] md:text-xl text-md'>
+    <div className="text-[#302e2c] md:text-xl text-md">
       {price}
-      <span className="text-[#24180c] opacity-75"> INR</span>
+      <span className="opacity-75"> INR</span>
     </div>
   </div>
 

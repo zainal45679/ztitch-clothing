@@ -6,12 +6,13 @@ import Link from 'next/link'
 type cartItems = {
     image : any,
     title : string,
+    id : string
 }
 
-const CatagoryCard = ({ image, title }:cartItems) => {
+const CatagoryCard = ({ image, title, id }:cartItems) => {
 
   return (
-    <Link href={`/shop/${title}`} className="relative bg-white overflow-hidden shadow-xl hover:scale-105 transition duration-200 ease-in-out">
+    <Link href={`/shop/${id}`} className="relative bg-white overflow-hidden shadow-xl hover:scale-105 transition duration-200 ease-in-out">
       <div className='relative h-65 w-full'>
         <Image 
         src={image} 

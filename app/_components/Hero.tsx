@@ -11,96 +11,107 @@ import imgs2 from "../../public/_images/Final_image_small_1.jpg";
 import imgs3 from "../../public/_images/Final_image_small_3.jpg";
 import imgs4 from "../../public/_images/Final_image_small_4.jpg";
 import { motion } from "framer-motion";
-
+import { useQuery } from "@tanstack/react-query";
+import { bannerApi } from "@/api/banner-api";
+import { baseUrl, storageUrl } from "@/utils/base-url";
 
 const Hero = () => {
-  const images = [
-    {
-      image: img2,
-      subheading: "SUMMER SALE",
-      heading: "30% Discount",
-      description: "Grab It before the SALE ends",
-      imageSmall: imgs3
-    },
-    {
-      image: img1,
-      subheading: "BLACK FRIDAY SALE",
-      heading: "20% Discount",
-      description: "Offers only Till 31st",
-      imageSmall: imgs2
-    },
-    {
-      image: img3,
-      subheading: "ELEVATE YOUR STYLE",
-      heading: "Modern Formals",
-      description: "Confidence in every   Z'titch.",
-      imageSmall: imgs1
-    },
-    {
-      image: img4,
-      subheading: "SUMMER BLOOMS",
-      heading: "Timeless Florals",
-      description: "Soft prints. Bold charm",
-      imageSmall: imgs4
-    },
-  ];
+  // const images = [
+  //   {
+  //     image: img2,
+  //     subheading: "SUMMER SALE",
+  //     heading: "30% Discount",
+  //     description: "Grab It before the SALE ends",
+  //     imageSmall: imgs3
+  //   },
+  //   {
+  //     image: img1,
+  //     subheading: "BLACK FRIDAY SALE",
+  //     heading: "20% Discount",
+  //     description: "Offers only Till 31st",
+  //     imageSmall: imgs2
+  //   },
+  //   {
+  //     image: img3,
+  //     subheading: "ELEVATE YOUR STYLE",
+  //     heading: "Modern Formals",
+  //     description: "Confidence in every   Z'titch.",
+  //     imageSmall: imgs1
+  //   },
+  //   {
+  //     image: img4,
+  //     subheading: "SUMMER BLOOMS",
+  //     heading: "Timeless Florals",
+  //     description: "Soft prints. Bold charm",
+  //     imageSmall: imgs4
+  //   },
+  // ];
 
   const [index, setIndex] = useState(0);
 
-  const textColor = index > 1 ? "text-[#4b2e2e]" : "text-gray-200"
-  const textColorSmall = index == 0 || index == 3 ? "text-[#4b2e2e]" : "text-gray-400"
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["banners"],
+    queryFn: bannerApi.getAllBanner,
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error...</div>;
+  }
+
+  const banners = data?.data?.banners;
+
+  const textColor = index > 1 ? "text-[#4b2e2e]" : "text-gray-200";
+  const textColorSmall =
+    index == 0 || index == 3 ? "text-[#4b2e2e]" : "text-gray-400";
 
   const handleNext = () => {
-    index == images.length - 1 ? setIndex(0) : setIndex(index + 1);
+    index == banners?.length - 1 ? setIndex(0) : setIndex(index + 1);
   };
 
   const handlePrev = () => {
-    index == 0 ? setIndex(images.length - 1) : setIndex(index - 1);
+    index == 0 ? setIndex(banners?.length - 1) : setIndex(index - 1);
   };
 
   return (
     <div className="relative h-[90vh] w-auto ">
       <div className="relative w-full h-full overflow-hidden">
-  <motion.div
-    animate={{ x: `-${index * 100}%` }}
-    transition={{
-      duration: 0.8,
-      ease: [0.22, 1, 0.36, 1], // smoother than easeInOut
-    }}
-    className="flex h-full"
-  >
-    {images.map((item, i) => (
-      <div key={i} className="min-w-full h-full relative">
-        <Image
-          src={item.image}
-          alt="Cloth"
-          fill
-          className="object-cover hidden md:block"
-        />
-        <Image
-          src={item.imageSmall}
-          alt="Cloth"
-          fill
-          className="object-cover block md:hidden"
-        />
+        <motion.div
+          key={index}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="min-w-full h-full relative"
+        >
+          <Image
+            src={`${storageUrl}${banners[index].image}`}
+            alt="banner"
+            fill
+            className="object-cover"
+            unoptimized
+          />
+        </motion.div>
       </div>
-    ))}
-  </motion.div>
-</div>
       <motion.div
-      key={index}
-      initial={{ opacity: 0}}
-      animate={{ opacity: 1}}
-      transition={{
-        duration: 1.5,
-        ease: [0.25, 1, 0.5, 1],
-      }}
-      className="h-full"
+        key={index}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 1.5,
+          ease: [0.25, 1, 0.5, 1],
+        }}
+        className="h-full"
       >
-        <div className={`${ index <= 1 ? "md:text-gray-200" : "md:text-[#24180c]"} ${textColorSmall} absolute flex flex-col md:items-center max-md:gap-3 max-md:p-10 justify-center max-md:justify-end max-md:pb-20 inset-0`}>
-          <p className="md:text-2xl text-[20px]">{images[index].subheading}</p>
-          <h1 className="md:text-[70px] text-[35px] font-bold -mt-7">{images[index].heading}</h1>
-          <p className="md:text-2xl text-[20px] md:-mt-4 -mt-6">{images[index].description}</p>
+        <div
+          className={`${index <= 1 ? "md:text-gray-200" : "md:text-[#24180c]"} ${textColorSmall} absolute flex flex-col md:items-center max-md:gap-3 max-md:p-10 justify-center max-md:justify-end max-md:pb-20 inset-0`}
+        >
+          <h1 className="md:text-[70px] text-[35px] font-bold -mt-7">
+            {banners[index].description}
+          </h1>
+          {/* <p className="md:text-2xl text-[20px] md:-mt-4 -mt-6">{data[index].description}</p> */}
         </div>
       </motion.div>
       <Arrow

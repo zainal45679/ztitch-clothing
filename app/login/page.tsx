@@ -29,7 +29,7 @@ const { register, handleSubmit, formState : { errors } } = useForm({ resolver: z
 const [pass, setPass] = useState("password")
 
 const submit = (data : Tlogin) =>{
-    console.log(data);
+    // console.log(data);
 }
 
   return (

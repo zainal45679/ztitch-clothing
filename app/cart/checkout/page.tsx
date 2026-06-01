@@ -22,7 +22,7 @@ const checkoutSchema = z.object({
 type TcheckOut = z.infer<typeof checkoutSchema>
 
 const submit = (data : TcheckOut) =>{
-    console.log(data);
+    // console.log(data);
 }
 
 const page = () => {

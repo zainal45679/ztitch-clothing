@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react'
 import Card from './Card'
 import img1 from '../../public/_images/IMG_9027.jpg'
@@ -10,6 +12,9 @@ import img7 from '../../public/_images/IMG_9028.jpg'
 import img8 from '../../public/_images/IMG_9029.jpg'
 import img9 from '../../public/_images/IMG_9030.jpg'
 import img10 from '../../public/_images/IMG_9031.jpg'
+import { useQuery } from '@tanstack/react-query'
+import { productApi } from '@/api/product-api'
+import { storageUrl } from '@/utils/base-url';
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300..900&display=swap');
@@ -110,6 +115,23 @@ const FeaturedProduct = () => {
         },
     ]
 
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["Featured"],
+    queryFn: productApi.getAllFeaturedProducts,
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error...</div>;
+  }
+
+  console.log(data?.data.data.products);
+
+  const product = data?.data.data.products
+
   return (
     <div className='h-auto bg-[#e5dccd] md:p-10 p-2 max-md:py-6'>
         <div className='flex flex-col justify-center items-center md:gap-4'>
@@ -118,15 +140,15 @@ const FeaturedProduct = () => {
         </div>
         <div className='grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 md:grid-rows-2 md:gap-4 gap-2 md:pt-7 pt-2'>
             {
-                products.map((items, i)=>(
-                    <Card key={i}
-                image={items.image}
-                title={items.title}
-                caption={items.caption}
+                product.map((items:any, i:any)=>(
+                <Card key={i}
+                image={`${storageUrl}${items.image}`}
+                title={items.name}
+                caption={items.description}
                 price={items.price}
                 size={items.size}
                 color={items.color}
-                id={i.toString(16)}
+                id={items._id}
                 quantity={items.quantity}/>
                 ))   
             }

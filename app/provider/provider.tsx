@@ -1,20 +1,30 @@
-"use client"
-import React, { Children, ReactNode } from 'react'
-import { CartProvider } from 'react-use-cart'
+"use client";
 
+import React, { ReactNode, useState } from "react";
+
+import { CartProvider } from "react-use-cart";
+
+import {
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 
 type Props = {
-    children : ReactNode
-}
+  children: ReactNode;
+};
 
-const ProviderClient = ({children}:Props) => {
+const ProviderClient = ({ children }: Props) => {
+  const [queryClient] = useState(
+    () => new QueryClient()
+  );
+
   return (
-    <div>
-        <CartProvider>
-            {children}
-        </CartProvider>
-    </div>
-  )
-}
+    <QueryClientProvider client={queryClient}>
+      <CartProvider>
+        {children}
+      </CartProvider>
+    </QueryClientProvider>
+  );
+};
 
-export default ProviderClient
+export default ProviderClient;

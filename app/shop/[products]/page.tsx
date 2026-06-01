@@ -8,56 +8,14 @@ import img4 from "../../../public/_images/IMG_9024.jpg";
 import img5 from "../../../public/_images/IMG_9025.jpg";
 import Card from "@/app/_components/Card";
 import CardSkeleton from "@/app/_components/CardSkeleton";
-
-const products = [
-  {
-    image: img1,
-    title: "PHEX - BLACK",
-    color: "BLACK",
-    caption: "FLORAL PRINT REGULAR FIT",
-    price: 2599,
-    size: "S",
-    quantity : 1
-  },
-  {
-    image: img2,
-    title: "ROW-S26 - BLUE",
-    color: "BLUE",
-    caption: "REGULAR FIT POLO",
-    price: 1999,
-    size: "M",
-    quantity : 1
-  },
-  {
-    image: img3,
-    title: "COCO - WHITE",
-    color: "WHITE",
-    caption: "TROPICAL PRINT CUBAN SHIRT",
-    price: 2799,
-    size: "L",
-    quantity : 1
-  },
-  {
-    image: img4,
-    title: "MELFI - TEAL",
-    color: "TEAL",
-    caption: "REGULAR FIT CHECKED PRINT",
-    price: 2999,
-    size: "S",
-    quantity : 1
-  },
-  {
-    image: img5,
-    title: "BEACH - GREEN",
-    color: "GREEN",
-    caption: "LOOSE FIT BEACH SHIRT",
-    price: 2399,
-    size: "XL",
-    quantity : 1
-  },
-];
+import { productApi } from "@/api/product-api";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "next/navigation";
+import { storageUrl } from "@/utils/base-url";
 
 const page = () => {
+  // console.log(data);
+
   const [inputValue, setInputValue] = useState("");
 
   const [handleSort, setHandleSort] = useState(true);
@@ -74,9 +32,27 @@ const page = () => {
 
   let order = "asc";
 
-  const filteredProduct = products.filter((product) => {
-    return product.title.toLowerCase().includes(inputValue.toLowerCase());
+  const params = useParams();
+  const categoryId = params.products as string;
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["Products", categoryId],
+    queryFn: () => productApi.getProductsByCategory(categoryId),
   });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error...</div>;
+  }
+
+  const apiProducts = data?.data?.data?.products;
+
+  const filteredProduct = apiProducts.filter((product : any) =>
+    product?.name?.toLowerCase().includes(inputValue.toLowerCase()),
+  );
 
   const sortedArray = [...filteredProduct].sort((a, b) => {
     return a.price - b.price;
@@ -107,16 +83,16 @@ const page = () => {
       <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 md:grid-rows-2 md:gap-4 gap-2 md:pt-4 max-md:py-4 px-4">
         {loading
           ? Array.from({ length: 8 }).map((_, i) => <CardSkeleton key={i} />)
-          : (handleSort ? filteredProduct : sortedArray).map((items, i) => (
+          : (handleSort ? filteredProduct : sortedArray).map((items:any) => (
               <Card
-                key={i}
-                image={items.image}
-                title={items.title}
-                caption={items.caption}
+                key={items._id}
+                image={`${storageUrl}${items.image}`}
+                title={items.name}
+                caption={items.description}
                 price={items.price}
                 size={items.size}
                 color={items.color}
-                id={i.toString(16)}
+                id={items._id}
                 quantity={items.quantity}
               />
             ))}

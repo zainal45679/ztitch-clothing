@@ -35,7 +35,7 @@ type Tlogin = z.infer<typeof schema>
 const { register, handleSubmit, formState : { errors } } = useForm({ resolver: zodResolver(signUpSchema)})
 
 const submit = (data : Tlogin) =>{
-    console.log(data);
+    // console.log(data);
 }
 
   return (

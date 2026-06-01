@@ -6,8 +6,25 @@ import img2 from "../../public/_images/IMG_8997.jpg";
 import img3 from "../../public/_images/IMG_9032.jpg";
 import img4 from "../../public/_images/IMG_8999.jpg";
 import img5 from "../../public/_images/Belt.png";
+import { categoryApi } from "@/api/category-api";
+import { useQuery } from "@tanstack/react-query";
+import { storageUrl } from "@/utils/base-url";
+import Link from "next/link";
 
 const Grid = () => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["categories"],
+    queryFn: categoryApi.getAllCategory,
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error...</div>;
+  }
+
   return (
     <div className="bg-[#24180c] md:p-6 p-2 max-md:py-6">
       <div className="flex flex-col items-center justify-center md:gap-3 md:pb-6 pb-3 ">
@@ -28,11 +45,14 @@ const Grid = () => {
             viewport={{ once: true, amount: 0.2 }}
             className="h-full"
           >
-            <Image
-              src={img1}
-              alt="Gents"
-              className="w-full h-full object-cover"
-            />
+            <Link href={`/shop/${data.data.categories[2]._id}`}>
+              <Image
+                src={`${storageUrl}${data.data.categories[2].image}`}
+                alt="Gents"
+                fill
+                className="w-full h-full object-cover"
+              />
+            </Link>
           </motion.div>
 
           <div className="absolute bottom-3 left-3 md:text-2xl bg-[#24180c] px-3 py-1 text-gray-200 opacity-50">
@@ -45,14 +65,17 @@ const Grid = () => {
             initial={{ opacity: 0, x: 100 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
-            viewport={{ once: true}}
+            viewport={{ once: true }}
             className="h-full"
           >
-          <Image
-            src={img4}
-            alt="Ladies"
-            className="w-full h-full object-cover"
-          />
+            <Link href={`/shop/${data.data.categories[4]._id}`}>
+              <Image
+                src={`${storageUrl}${data.data.categories[4].image}`}
+                fill
+                alt="Ladies"
+                className="w-full h-full object-cover"
+              />
+            </Link>
           </motion.div>
           <div className="absolute bottom-3 left-3 md:text-2xl bg-[#24180c] px-3 py-1 text-gray-200 opacity-50">
             BOTTOM-WEARS
@@ -63,14 +86,17 @@ const Grid = () => {
             initial={{ opacity: 0, y: 200 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            viewport={{ once: true}}
+            viewport={{ once: true }}
             className="h-full"
           >
-          <Image
-            src={img4}
-            alt="Ladies"
-            className="w-full h-full object-cover"
-          />
+            <Link href={`/shop/${data.data.categories[4]._id}`}>
+              <Image
+                src={`${storageUrl}${data.data.categories[4].image}`}
+                fill
+                alt="Ladies"
+                className="w-full h-full object-cover"
+              />
+            </Link>
           </motion.div>
           <div className="absolute bottom-3 left-3 md:text-2xl bg-[#24180c] px-3 py-1 text-gray-200 opacity-50">
             BOTTOM-WEARS
@@ -85,11 +111,14 @@ const Grid = () => {
             viewport={{ once: true, amount: 0.4 }}
             className="h-full"
           >
-          <Image
-            src={img3}
-            alt="Daily"
-            className="w-full h-full object-cover"
-          />
+            <Link href={`/shop/${data.data.categories[8]._id}`}>
+              <Image
+                src={`${storageUrl}${data.data.categories[8].image}`}
+                fill
+                alt="Ladies"
+                className="w-full h-full object-cover"
+              />
+            </Link>
           </motion.div>
           <div className="absolute bottom-3 left-3 md:text-2xl bg-[#24180c] px-3 py-1 text-gray-200  opacity-50">
             SNEAKERS
@@ -103,11 +132,14 @@ const Grid = () => {
             viewport={{ once: true, amount: 0.4 }}
             className="h-full"
           >
-          <Image
-            src={img3}
-            alt="Daily"
-            className="w-full h-full object-cover"
-          />
+            <Link href={`/shop/${data.data.categories[8]._id}`}>
+              <Image
+                src={`${storageUrl}${data.data.categories[8].image}`}
+                fill
+                alt="Ladies"
+                className="w-full h-full object-cover"
+              />
+            </Link>
           </motion.div>
           <div className="absolute bottom-3 left-3 md:text-2xl bg-[#24180c] px-3 py-1 text-gray-200  opacity-50">
             SNEAKERS
@@ -121,16 +153,19 @@ const Grid = () => {
             viewport={{ once: true, amount: 0.2 }}
             className="h-full"
           >
-          <Image
-            src={img2}
-            alt="Sale"
-            className="w-full h-full object-cover hidden md:block"
-          />
-          <Image
-            src={img5}
-            alt="Sale"
-            className="w-full h-full object-cover block md:hidden"
-          />
+            <Link href={`/shop/${data.data.categories[9]._id}`}>
+              <Image
+                src={`${storageUrl}${data.data.categories[9].image}`}
+                fill
+                alt="Ladies"
+                className="w-full h-full object-cover"
+              />
+            </Link>
+            <Image
+              src={img5}
+              alt="Sale"
+              className="w-full h-full object-cover block md:hidden"
+            />
           </motion.div>
           <div className="absolute bottom-3 left-3 md:text-2xl bg-[#24180c] px-3 py-1 text-gray-200  opacity-50">
             BELTS
