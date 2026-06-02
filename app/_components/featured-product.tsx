@@ -133,7 +133,7 @@ const FeaturedProduct = () => {
   const product = data?.data.data.products
 
   return (
-    <div className='h-auto bg-[#e5dccd] md:p-10 p-2 max-md:py-6'>
+    <div className='h-auto bg-[#e5dccd] md:p-10 p-2 max-md:py-6 z-50'>
         <div className='flex flex-col justify-center items-center md:gap-4'>
             <h1 className='md:text-5xl text-4xl text-[#24180c]'>FEATURED PRODUCTS</h1>
             <p className='text-[#24180c] text-2xl'>Check These out!</p>

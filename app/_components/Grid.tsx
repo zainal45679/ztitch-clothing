@@ -26,7 +26,7 @@ const Grid = () => {
   }
 
   return (
-    <div className="bg-[#24180c] md:p-6 p-2 max-md:py-6">
+    <div className="relative z-0 bg-[#24180c] md:p-6 p-2 max-md:py-6">
       <div className="flex flex-col items-center justify-center md:gap-3 md:pb-6 pb-3 ">
         <h1 className="text-gray-200 font-normal md:text-6xl text-5xl">
           CATEGORIES
@@ -43,14 +43,14 @@ const Grid = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
             viewport={{ once: true, amount: 0.2 }}
-            className="h-full"
+            className="h-full relative z-0"
           >
             <Link href={`/shop/${data.data.categories[2]._id}`}>
               <Image
                 src={`${storageUrl}${data.data.categories[2].image}`}
                 alt="Gents"
                 fill
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover relative z-0"
               />
             </Link>
           </motion.div>
@@ -66,14 +66,14 @@ const Grid = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
             viewport={{ once: true }}
-            className="h-full"
+            className="h-full relative z-0"
           >
             <Link href={`/shop/${data.data.categories[4]._id}`}>
               <Image
                 src={`${storageUrl}${data.data.categories[4].image}`}
                 fill
                 alt="Ladies"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover relative z-0"
               />
             </Link>
           </motion.div>
@@ -87,14 +87,14 @@ const Grid = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
             viewport={{ once: true }}
-            className="h-full"
+            className="h-full relative z-0"
           >
             <Link href={`/shop/${data.data.categories[4]._id}`}>
               <Image
                 src={`${storageUrl}${data.data.categories[4].image}`}
                 fill
                 alt="Ladies"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover relative z-0"
               />
             </Link>
           </motion.div>
