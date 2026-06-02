@@ -38,49 +38,6 @@ const Shop = () => {
 
     const category = data.data.categories
 
-    // const products = [
-    //     {
-    //         image : img1,
-    //         title : "SHIRTS",
-    //     },
-    //     {
-    //         image : img2,
-    //         title : "JACKETS",
-    //     },
-    //     {
-    //         image : img3,
-    //         title : "POLOS",
-    //     },
-    //     {
-    //         image : img4,
-    //         title : "SWEATERS",
-    //     },
-    //     {
-    //         image : img5,
-    //         title : "JEANS",
-    //     },
-    //     {
-    //         image : img6,
-    //         title : "TRACKSUITS",
-    //     },
-    //     {
-    //         image : img7,
-    //         title : "TROUSERS",
-    //     },
-    //     {
-    //         image : img8,
-    //         title : "SHORTS",
-    //     },
-    //     {
-    //         image : img9,
-    //         title : "SHOES",
-    //     },
-    //     {
-    //         image : img10,
-    //         title : "BELT",
-    //     },
-    // ]
-
   return (
     <div className='h-auto bg-[#e5dccd] md:p-10 p-2 max-md:py-6'>
         <div className='flex flex-col justify-center items-center md:gap-4'>
