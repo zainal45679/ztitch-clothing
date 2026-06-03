@@ -1,19 +1,31 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Cart from "../../svg/Cart";
 import Hamburger from "@/svg/Hamburger";
 import Close from "@/svg/Close";
 import { useCart } from "react-use-cart";
+import Profile from "@/svg/Profile";
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
 
   const { totalUniqueItems } = useCart();
 
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken);
+  },[]);
+
+  console.log("token",token);
+
   return (
     <div className="flex bg-[#24180c] md:h-15 items-center justify-between p-3 px-5  md:p-10 z-50">
-      <Link href="/" className="text-gray-200 text-[25px] md:text-5xl p-0 ">Z'TITCH</Link>
+      <Link href="/" className="text-gray-200 text-[25px] md:text-5xl p-0 ">
+        Z'TITCH
+      </Link>
       <div className="hidden md:flex  gap-8 text-gray-200 text-2xl">
         <Link href="/">Home</Link>
         <Link href="/shop">Shop</Link>
@@ -23,10 +35,17 @@ const Header = () => {
         <Link href="">Page</Link>
       </div>
       <div className="flex gap-7">
-        <div className="flex relative cursor-pointer mt-2">
+        <div className="flex relative cursor-pointer mt-2 gap-3">
+          { !token &&
+            <a href={process.env.NEXT_PUBLIC_GOOGLE_LOGIN_URL}>
+              <Profile className="md:w-6 w-5.5 md:h-6 h-5.5 text-gray-200 " />
+            </a>
+          }
+
           <Link href="/cart">
             <Cart className="md:w-6 w-5.5 md:h-6 h-5.5 text-gray-200 " />
           </Link>
+
           <span className="absolute md:-top-5 md:-right-5 -top-3.5 -right-5 bg-gray-200/70 pb-0.5 text-gray-800 md:px-2 px-[7.5] max-md:text-sm rounded-full font-bold">
             {totalUniqueItems}
           </span>
@@ -48,12 +67,24 @@ const Header = () => {
           </div>
 
           <div className="flex flex-col text-[#e5dccd]/90 px-7 py-15 text-2xl gap-2">
-            <Link onClick={()=>setMenu(false)} href="/">Home</Link>
-            <Link onClick={()=>setMenu(false)} href="/shop">Shop</Link>
-            <Link onClick={()=>setMenu(false)} href="">About</Link>
-            <Link onClick={()=>setMenu(false)} href="">Blog</Link>
-            <Link onClick={()=>setMenu(false)} href="/contact">Contact</Link>
-            <Link onClick={()=>setMenu(false)} href="">Page</Link>
+            <Link onClick={() => setMenu(false)} href="/">
+              Home
+            </Link>
+            <Link onClick={() => setMenu(false)} href="/shop">
+              Shop
+            </Link>
+            <Link onClick={() => setMenu(false)} href="">
+              About
+            </Link>
+            <Link onClick={() => setMenu(false)} href="">
+              Blog
+            </Link>
+            <Link onClick={() => setMenu(false)} href="/contact">
+              Contact
+            </Link>
+            <Link onClick={() => setMenu(false)} href="">
+              Page
+            </Link>
           </div>
         </div>
       </div>
